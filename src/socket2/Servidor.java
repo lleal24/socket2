@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *El lado del cliente inicia esperando una conexion del cliente
+ *Espera conexion y mensaje del cliente para enviar una respuesta.
  */
 package socket2;
 import java.io.DataInputStream;
@@ -24,6 +23,9 @@ public class Servidor {
         DataInputStream in;
         DataOutputStream out;
         final int PUERTO = 2019;
+        float resultado = 0;
+        float numero1 = 0;
+        float numero2 = 0;
         
         try{
             
@@ -31,25 +33,52 @@ public class Servidor {
             System.out.print("Servidor iniciado\n");
             
             while(true){
-                //esperando cliente socket del cliente
+                //esperando una conexion con el cliente cliente socket del cliente
                 sc = servidor.accept();
                 
-                //Comunicacion 
+                //Comunicacion datos de entrada y salida
                 in = new DataInputStream(sc.getInputStream());
                 out = new DataOutputStream(sc.getOutputStream());
                 
+                //mensaje = cadena que envia el cliente con operacion
                 String mensaje = in.readUTF();
                 
-                System.out.print(mensaje + "\n");
+                //se crea un array con la variable mensaje y se divide por espacio
+                // la posicion[0]=operacion
+                //    posicion[1]=numero1
+                //    posicion[2]=numero2
+                String linea [] = mensaje.split(" ");            
+                numero1 = Float.valueOf(linea[1]);
+                numero2 = Float.valueOf(linea[2]);
                 
-                out.writeUTF("Hola desde el server\n");
+                //switch case que opera segun el caso
+                switch (linea[0]){
+                    case "suma":
+                        resultado = numero1 + numero2;
+                        break;
+                    case "resta":
+                        resultado = numero1 - numero2;
+                        break;
+                    case "multiplica":
+                        resultado = numero1 * numero2;
+                        break;
+                    case "divide":
+                        resultado = numero1 / numero2;
+                        break;
+                }
+                
+                
+                //se imprime el mensaje enviado para el cliente
+                System.out.print("Operacion envidada por el cliente: "+mensaje + "\n");
+                
+                
+                // se envia mensaje al cliente con el resultado
+                out.writeUTF("Respuesta del server a operacion: " +resultado);
                 
                 sc.close();
-                System.out.println("CLiente desconectado\n");
+                System.out.println("Cliente desconectado\n");
                 
-                                
-                
-               
+                                              
             }
             
             

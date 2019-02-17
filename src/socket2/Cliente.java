@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * El cliente se conecta con el servidor envia peticion y recibe respuesta
+ * a esta peticion;
  */
 package socket2;
 
@@ -41,7 +40,8 @@ public class Cliente {
             
             //mandar un mensaje
             //out.writeUTF("Hola desde el cliente\n");
-            System.out.print("\n Ingrese un mensaje : ");
+            System.out.print("\n Opciones de ingreso: suma|resta|divide|multiplica numero1 numero2\n Ejm:  multiplica 1 2\n");
+            System.out.print("\n Ingrese su operacion:");
             String enviar = entrada.readLine();
             out.writeUTF(enviar);
             
