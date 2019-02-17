@@ -40,7 +40,7 @@ public class Servidor {
                 
                 String mensaje = in.readUTF();
                 
-                System.out.print(mensaje);
+                System.out.print(mensaje + "\n");
                 
                 out.writeUTF("Hola desde el server\n");
                 
