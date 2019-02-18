@@ -48,21 +48,21 @@ public class Servidor {
                 //    posicion[1]=numero1
                 //    posicion[2]=numero2
                 String linea [] = mensaje.split(" ");            
-                numero1 = Float.valueOf(linea[1]);
+                numero1 = Float.valueOf(linea[0]);
                 numero2 = Float.valueOf(linea[2]);
                 
                 //switch case que opera segun el caso
-                switch (linea[0]){
-                    case "suma":
+                switch (linea[1]){
+                    case "+":
                         resultado = numero1 + numero2;
                         break;
-                    case "resta":
+                    case "-":
                         resultado = numero1 - numero2;
                         break;
-                    case "multiplica":
+                    case "*":
                         resultado = numero1 * numero2;
                         break;
-                    case "divide":
+                    case "/":
                         resultado = numero1 / numero2;
                         break;
                 }

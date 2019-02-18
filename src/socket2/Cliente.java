@@ -40,7 +40,7 @@ public class Cliente {
             
             //mandar un mensaje
             //out.writeUTF("Hola desde el cliente\n");
-            System.out.print("\n Opciones de ingreso: suma|resta|divide|multiplica numero1 numero2\n Ejm:  multiplica 1 2\n");
+            System.out.print("\n Opciones de ingreso: numero1 +|-|/|* numero2\n Ejm:  1 * 1\n");
             System.out.print("\n Ingrese su operacion:");
             String enviar = entrada.readLine();
             out.writeUTF(enviar);
